@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:expanse_tracker_app/screens/home/home_screen.dart';
+import 'package:provider/provider.dart';
 
-import 'package:expanse_tracker_app/firebase_options.dart';
+import 'firebase_options.dart';
+
+import 'providers/theme_provider.dart';
+import 'utils/light_theme.dart';
+import 'utils/dark_theme.dart';
+
 import 'screens/auth/login_screen.dart';
 
 Future<void> main() async {
@@ -12,7 +17,12 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -20,17 +30,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider =
+    Provider.of<ThemeProvider>(context);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Smart Expense Tracker',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.blue,
-        ),
-        useMaterial3: true,
-      ),
+      title: 'Expense Tracker',
 
-      home: const HomeScreen(),
+      theme: AppThemes.lightTheme,
+      darkTheme: DarkAppTheme.darkTheme,
+
+      themeMode: themeProvider.isDarkMode
+          ? ThemeMode.dark
+          : ThemeMode.light,
+
+      home: const LoginScreen(),
     );
   }
 }
