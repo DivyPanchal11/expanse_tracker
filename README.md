@@ -1,350 +1,177 @@
-\# Expense Tracker
-
-
+# Expense Tracker
 
 A modern Flutter + Firebase application that helps users manage their daily expenses, track spending habits, and visualize financial data through interactive analytics dashboards.
 
+## Features
 
+### Authentication
 
-\## Features
+* User Registration
+* User Login
+* Secure Firebase Authentication
+* Logout Functionality
 
+### Expense Management
 
+* Add Expense
+* View Expense List
+* Update Expense
+* Delete Expense
+* Real-time Firestore Updates
 
-\### Authentication
+### Search & Filtering
 
+* Search Expenses by Title
+* Search Expenses by Category
 
+### Analytics Dashboard
 
-\* User Registration
+* Total Expenses
+* Monthly Expenses
+* Today's Expenses
+* Category-wise Expense Distribution
+* Pie Chart Analytics
+* Monthly Spending Bar Chart
 
-\* User Login
+### User Experience
 
-\* Secure Firebase Authentication
+* Dark Mode Support
+* Loading Indicators
+* Error Handling with SnackBars
+* Responsive UI
+* Real-time Data Synchronization
 
-\* Logout Functionality
+## Tech Stack
 
+### Frontend
 
+* Flutter
+* Dart
 
-\### Expense Management
+### Backend
 
+* Firebase Authentication
+* Cloud Firestore
 
+### State Management
 
-\* Add Expense
+* Provider
 
-\* View Expense List
+### Charts & Analytics
 
-\* Update Expense
+* fl_chart
 
-\* Delete Expense
-
-\* Real-time Firestore Updates
-
-
-
-\### Search \& Filtering
-
-
-
-\* Search Expenses by Title
-
-\* Search Expenses by Category
-
-
-
-\### Analytics Dashboard
-
-
-
-\* Total Expenses
-
-\* Monthly Expenses
-
-\* Today's Expenses
-
-\* Category-wise Expense Distribution
-
-\* Pie Chart Analytics
-
-\* Monthly Spending Bar Chart
-
-
-
-\### User Experience
-
-
-
-\* Dark Mode Support
-
-\* Loading Indicators
-
-\* Error Handling with SnackBars
-
-\* Responsive UI
-
-\* Real-time Data Synchronization
-
-
-
-\## Tech Stack
-
-
-
-\### Frontend
-
-
-
-\* Flutter
-
-\* Dart
-
-
-
-\### Backend
-
-
-
-\* Firebase Authentication
-
-\* Cloud Firestore
-
-
-
-\### State Management
-
-
-
-\* Provider
-
-
-
-\### Charts \& Analytics
-
-
-
-\* fl\_chart
-
-
-
-\## Project Structure
-
-
+## Project Structure
 
 ```text
-
 lib/
-
 ├── providers/
-
-│   └── theme\_provider.dart
-
+│   └── theme_provider.dart
 ├── screens/
-
 │   ├── auth/
-
-│   │   ├── login\_screen.dart
-
-│   │   └── register\_screen.dart
-
+│   │   ├── login_screen.dart
+│   │   └── register_screen.dart
 │   ├── expense/
-
-│   │   ├── add\_expense\_screen.dart
-
-│   │   └── expense\_list\_screen.dart
-
+│   │   ├── add_expense_screen.dart
+│   │   └── expense_list_screen.dart
 │   ├── analytics/
-
-│   │   ├── analytics\_screen.dart
-
-│   │   ├── expense\_pie\_chart.dart
-
-│   │   └── monthly\_bar\_chart.dart
-
+│   │   ├── analytics_screen.dart
+│   │   ├── expense_pie_chart.dart
+│   │   └── monthly_bar_chart.dart
 │   └── profile/
-
-│       └── profile\_screen.dart
-
+│       └── profile_screen.dart
 ├── services/
-
-│   ├── auth\_service.dart
-
-│   └── firestore\_service.dart
-
+│   ├── auth_service.dart
+│   └── firestore_service.dart
 ├── utils/
-
-│   ├── light\_theme.dart
-
-│   └── dark\_theme.dart
-
-├── firebase\_options.dart
-
+│   ├── light_theme.dart
+│   └── dark_theme.dart
+├── firebase_options.dart
 └── main.dart
-
 ```
 
 
 
-\## Installation
+## Installation
 
-
-
-\### Clone Repository
-
-
+### Clone Repository
 
 ```bash
-
-git clone https://github.com/DivyPanchal11/expanse\_tracker.gitcd expense\_tracker
-
+git clone https://github.com/DivyPanchal11/expanse_tracker.git
+cd expense_tracker
 ```
 
 
-
-\### Install Dependencies
-
-
+### Install Dependencies
 
 ```bash
-
 flutter pub get
-
 ```
 
-
-
-\### Run Application
-
-
+### Run Application
 
 ```bash
-
 flutter run
-
 ```
 
+## Firebase Setup
 
+### Step 1: Create Firebase Project
 
-\## Firebase Setup
+* Open Firebase Console
+* Create a new project
+* Enable Authentication
+* Enable Cloud Firestore
 
-
-
-\### Step 1: Create Firebase Project
-
-
-
-\* Open Firebase Console
-
-\* Create a new project
-
-\* Enable Authentication
-
-\* Enable Cloud Firestore
-
-
-
-\### Step 2: Configure FlutterFire
-
-
+### Step 2: Configure FlutterFire
 
 ```bash
-
 flutterfire configure
-
 ```
 
-
-
-\### Step 3: Install Firebase Packages
-
-
+### Step 3: Install Firebase Packages
 
 ```bash
-
-flutter pub add firebase\_core
-
-flutter pub add firebase\_auth
-
-flutter pub add cloud\_firestore
-
+flutter pub add firebase_core
+flutter pub add firebase_auth
+flutter pub add cloud_firestore
 ```
 
-
-
-\### Step 4: Initialize Firebase
-
-
+### Step 4: Initialize Firebase
 
 Ensure Firebase is initialized in `main.dart`.
 
+## Dependencies
 
+* firebase_core
+* firebase_auth
+* cloud_firestore
+* provider
+* fl_chart
 
-\## Dependencies
+## Current Features Completed
 
+* Firebase Authentication
+* Expense CRUD Operations
+* Firestore Integration
+* Search Functionality
+* Analytics Dashboard
+* Pie Chart Visualization
+* Monthly Bar Chart
+* Dark Mode Toggle
+* Profile Screen
+* Loading States
+* Error Handling
+* Responsive UI
 
+## Author
 
-\* firebase\_core
-
-\* firebase\_auth
-
-\* cloud\_firestore
-
-\* provider
-
-\* fl\_chart
-
-
-
-\## Current Features Completed
-
-
-
-\* Firebase Authentication
-
-\* Expense CRUD Operations
-
-\* Firestore Integration
-
-\* Search Functionality
-
-\* Analytics Dashboard
-
-\* Pie Chart Visualization
-
-\* Monthly Bar Chart
-
-\* Dark Mode Toggle
-
-\* Profile Screen
-
-\* Loading States
-
-\* Error Handling
-
-\* Responsive UI
-
-
-
-
-
-\## Author
-
-
-
-\### Divy Panchal
-
-
+### Divy Panchal
 
 Flutter Developer
 
-
-
 Built with Flutter, Firebase, and Dart.
 
-
-
-\## License
-
-
+## License
 
 This project is for educational and portfolio purposes.
-
-
-
