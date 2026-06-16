@@ -55,4 +55,15 @@ class FirestoreService {
         .doc(docId)
         .delete();
   }
+
+  Stream<QuerySnapshot> getExpenses() {
+    String uid = FirebaseAuth.instance.currentUser!.uid;
+
+    return _firestore
+        .collection('users')
+        .doc(uid)
+        .collection('expenses')
+        .orderBy('date', descending: true)
+        .snapshots();
+  }
 }
