@@ -106,13 +106,16 @@ class AnalyticsScreen extends StatelessWidget {
                     icon: Icons.today
                 ),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 45),
+
+
 
                 const Text(
                   "Expense Distribution",
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 25,
                     fontWeight: FontWeight.bold,
+                    color: Color(0xFF0014A8),
                   ),
                 ),
 
@@ -126,13 +129,14 @@ class AnalyticsScreen extends StatelessWidget {
                   others: others,
                 ),
 
-                const SizedBox(height: 30),
+                const SizedBox(height: 45),
 
                 const Text(
                   "Monthly Spending",
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 24,
                     fontWeight: FontWeight.bold,
+                    color: Color(0xFF0014A8),
                   ),
                 ),
 

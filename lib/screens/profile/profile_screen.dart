@@ -38,8 +38,7 @@ class ProfileScreen extends StatelessWidget {
         int expenseCount = 0;
 
         if (snapshot.hasData) {
-          expenseCount =
-              snapshot.data!.docs.length;
+          expenseCount = snapshot.data!.docs.length;
         }
 
         return ListView(
@@ -48,14 +47,16 @@ class ProfileScreen extends StatelessWidget {
             const SizedBox(height: 20),
 
             const CircleAvatar(
-              radius: 50,
+              radius: 55,
+              backgroundColor: Color(0xFF0014A8),
               child: Icon(
                 Icons.person,
-                size: 50,
+                size: 60,
+                color: Colors.white,
               ),
             ),
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 15),
 
             Center(
               child: Text(
@@ -70,18 +71,32 @@ class ProfileScreen extends StatelessWidget {
             const SizedBox(height: 30),
 
             Card(
+              elevation: 5,
+              shape: RoundedRectangleBorder(
+                borderRadius:
+                BorderRadius.circular(20),
+              ),
               child: ListTile(
-                leading: const Icon(
-                  Icons.receipt_long,
+                leading: const CircleAvatar(
+                  backgroundColor:
+                  Color(0xFF0014A8),
+                  child: Icon(
+                    Icons.receipt_long,
+                    color: Colors.white,
+                  ),
                 ),
                 title: const Text(
                   "Total Expenses",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 trailing: Text(
                   expenseCount.toString(),
                   style: const TextStyle(
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    fontSize: 18,
+                    color: Color(0xFF0014A8),
                   ),
                 ),
               ),
@@ -90,12 +105,25 @@ class ProfileScreen extends StatelessWidget {
             const SizedBox(height: 20),
 
             Card(
+              elevation: 5,
+              shape: RoundedRectangleBorder(
+                borderRadius:
+                BorderRadius.circular(20),
+              ),
               child: SwitchListTile(
                 title: const Text(
                   "Dark Mode",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                secondary: const Icon(
-                  Icons.dark_mode,
+                secondary: const CircleAvatar(
+                  backgroundColor:
+                  Color(0xFF0014A8),
+                  child: Icon(
+                    Icons.dark_mode,
+                    color: Colors.white,
+                  ),
                 ),
                 value: themeProvider.isDarkMode,
                 onChanged: (value) {
@@ -104,17 +132,27 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
 
             SizedBox(
-              width: double.infinity,
+              height: 55,
               child: ElevatedButton.icon(
-                icon: const Icon(Icons.logout),
-                label: const Text("Logout"),
+                icon: const Icon(
+                  Icons.logout,
+                  color: Colors.white,
+                ),
+                label: const Text(
+                  "Logout",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 style: ElevatedButton.styleFrom(
-                  padding:
-                  const EdgeInsets.symmetric(
-                    vertical: 15,
+                  backgroundColor: Colors.red,
+                  shape: RoundedRectangleBorder(
+                    borderRadius:
+                    BorderRadius.circular(15),
                   ),
                 ),
                 onPressed: () async {
@@ -136,8 +174,9 @@ class ProfileScreen extends StatelessWidget {
                                   false,
                                 );
                               },
-                              child:
-                              const Text("Cancel"),
+                              child: const Text(
+                                "Cancel",
+                              ),
                             ),
                             TextButton(
                               onPressed: () {
@@ -146,8 +185,9 @@ class ProfileScreen extends StatelessWidget {
                                   true,
                                 );
                               },
-                              child:
-                              const Text("Logout"),
+                              child: const Text(
+                                "Logout",
+                              ),
                             ),
                           ],
                         ),

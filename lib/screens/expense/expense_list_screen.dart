@@ -8,11 +8,14 @@ class ExpenseListScreen extends StatefulWidget {
   const ExpenseListScreen({super.key});
 
   @override
-  State<ExpenseListScreen> createState() => _ExpenseListScreenState();
+  State<ExpenseListScreen> createState() =>
+      _ExpenseListScreenState();
 }
 
-class _ExpenseListScreenState extends State<ExpenseListScreen> {
-  final FirestoreService firestoreService = FirestoreService();
+class _ExpenseListScreenState
+    extends State<ExpenseListScreen> {
+  final FirestoreService firestoreService =
+  FirestoreService();
 
   final TextEditingController searchController =
   TextEditingController();
@@ -47,7 +50,10 @@ class _ExpenseListScreenState extends State<ExpenseListScreen> {
           return const Center(
             child: Text(
               "No Expenses Found",
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           );
         }
@@ -55,18 +61,29 @@ class _ExpenseListScreenState extends State<ExpenseListScreen> {
         return Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(12),
               child: TextField(
                 controller: searchController,
-                decoration: const InputDecoration(
-                  hintText: "Search by title or category",
-                  prefixIcon: Icon(Icons.search),
-                  border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  hintText:
+                  "Search by title or category",
+                  prefixIcon:
+                  const Icon(Icons.search),
+                  filled: true,
+                  fillColor: Theme.of(context)
+                      .brightness ==
+                      Brightness.dark
+                      ? Colors.grey.shade900
+                      : Colors.white,
+                  border: OutlineInputBorder(
+                    borderRadius:
+                    BorderRadius.circular(15),
+                  ),
                 ),
                 onChanged: (value) {
                   setState(() {
                     searchText =
-                        value.trim().toLowerCase();
+                        value.toLowerCase().trim();
                   });
                 },
               ),
@@ -74,7 +91,8 @@ class _ExpenseListScreenState extends State<ExpenseListScreen> {
 
             Expanded(
               child: ListView.builder(
-                itemCount: snapshot.data!.docs.length,
+                itemCount:
+                snapshot.data!.docs.length,
                 itemBuilder: (context, index) {
                   final expense =
                   snapshot.data!.docs[index];
@@ -83,133 +101,202 @@ class _ExpenseListScreenState extends State<ExpenseListScreen> {
                       .toString()
                       .toLowerCase();
 
-                  final category = expense['category']
+                  final category =
+                  expense['category']
                       .toString()
                       .toLowerCase();
 
                   if (searchText.isNotEmpty &&
-                      !title.contains(searchText) &&
-                      !category.contains(searchText)) {
-                    return const SizedBox.shrink();
+                      !title.contains(
+                          searchText) &&
+                      !category.contains(
+                          searchText)) {
+                    return const SizedBox();
                   }
 
-                  final Timestamp timestamp =
-                  expense['date'] as Timestamp;
-
                   final DateTime date =
-                  timestamp.toDate();
+                  (expense['date']
+                  as Timestamp)
+                      .toDate();
 
                   return Card(
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 5,
+                    elevation: 6,
+                    margin:
+                    const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 8,
                     ),
-                    child: ListTile(
-                      title: Text(
-                        expense['title'],
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
+                    shape:
+                    RoundedRectangleBorder(
+                      borderRadius:
+                      BorderRadius.circular(
+                          20),
+                    ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Theme.of(context)
+                            .cardColor,
+                        borderRadius:
+                        BorderRadius.circular(
+                            20),
+                      ),
+                      child: ListTile(
+                        contentPadding:
+                        const EdgeInsets
+                            .symmetric(
+                          horizontal: 16,
+                          vertical: 10,
                         ),
-                      ),
 
-                      subtitle: Text(
-                        "${expense['category']} • "
-                            "${date.day}/${date.month}/${date.year}",
-                      ),
-
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            "₹${expense['amount']}",
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),
+                        title: Text(
+                          expense['title'],
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight:
+                            FontWeight.bold,
+                            color: Theme.of(
+                                context)
+                                .textTheme
+                                .bodyLarge
+                                ?.color,
                           ),
+                        ),
 
-                          IconButton(
-                            icon: const Icon(
-                              Icons.edit,
-                            ),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      AddExpenseScreen(
-                                        docId: expense.id,
-                                        title:
-                                        expense['title'],
-                                        amount: (expense[
-                                        'amount']
-                                        as num)
-                                            .toDouble(),
-                                        category: expense[
-                                        'category'],
-                                        date: (expense[
-                                        'date']
-                                        as Timestamp)
-                                            .toDate(),
-                                      ),
-                                ),
-                              );
-                            },
+                        subtitle: Text(
+                          "${expense['category']} • ${date.day}/${date.month}/${date.year}",
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Theme.of(
+                                context)
+                                .textTheme
+                                .bodyMedium
+                                ?.color,
                           ),
+                        ),
 
-                          IconButton(
-                            icon: const Icon(
-                              Icons.delete,
-                              color: Colors.red,
+                        trailing: Row(
+                          mainAxisSize:
+                          MainAxisSize.min,
+                          children: [
+                            Text(
+                              "₹${expense['amount']}",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight:
+                                FontWeight.bold,
+                                color: Theme.of(
+                                    context)
+                                    .textTheme
+                                    .bodyLarge
+                                    ?.color,
+                              ),
                             ),
-                            onPressed: () async {
-                              bool? confirm =
-                              await showDialog(
-                                context: context,
-                                builder: (context) =>
-                                    AlertDialog(
-                                      title: const Text(
-                                        "Delete Expense",
-                                      ),
-                                      content: const Text(
-                                        "Are you sure you want to delete this expense?",
-                                      ),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () {
-                                            Navigator.pop(
-                                              context,
-                                              false,
-                                            );
-                                          },
-                                          child: const Text(
-                                            "Cancel",
-                                          ),
-                                        ),
-                                        TextButton(
-                                          onPressed: () {
-                                            Navigator.pop(
-                                              context,
-                                              true,
-                                            );
-                                          },
-                                          child: const Text(
-                                            "Delete",
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                              );
 
-                              if (confirm == true) {
-                                await firestoreService
-                                    .deleteExpense(
-                                  expense.id,
+                            IconButton(
+                              icon: Icon(
+                                Icons.edit,
+                                color: Theme.of(
+                                    context)
+                                    .iconTheme
+                                    .color,
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder:
+                                        (context) =>
+                                        AddExpenseScreen(
+                                          docId:
+                                          expense.id,
+                                          title:
+                                          expense[
+                                          'title'],
+                                          amount:
+                                          (expense[
+                                          'amount']
+                                          as num)
+                                              .toDouble(),
+                                          category:
+                                          expense[
+                                          'category'],
+                                          date: (expense[
+                                          'date']
+                                          as Timestamp)
+                                              .toDate(),
+                                        ),
+                                  ),
                                 );
-                              }
-                            },
-                          ),
-                        ],
+                              },
+                            ),
+
+                            IconButton(
+                              icon:
+                              const Icon(
+                                Icons.delete,
+                                color:
+                                Colors.red,
+                              ),
+                              onPressed:
+                                  () async {
+                                bool?
+                                confirm =
+                                await showDialog(
+                                  context:
+                                  context,
+                                  builder:
+                                      (context) =>
+                                      AlertDialog(
+                                        title:
+                                        const Text(
+                                          "Delete Expense",
+                                        ),
+                                        content:
+                                        const Text(
+                                          "Are you sure you want to delete this expense?",
+                                        ),
+                                        actions: [
+                                          TextButton(
+                                            onPressed:
+                                                () {
+                                              Navigator.pop(
+                                                context,
+                                                false,
+                                              );
+                                            },
+                                            child:
+                                            const Text(
+                                              "Cancel",
+                                            ),
+                                          ),
+                                          TextButton(
+                                            onPressed:
+                                                () {
+                                              Navigator.pop(
+                                                context,
+                                                true,
+                                              );
+                                            },
+                                            child:
+                                            const Text(
+                                              "Delete",
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                );
+
+                                if (confirm ==
+                                    true) {
+                                  await firestoreService
+                                      .deleteExpense(
+                                    expense.id,
+                                  );
+                                }
+                              },
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );

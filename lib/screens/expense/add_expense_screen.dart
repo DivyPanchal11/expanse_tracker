@@ -171,6 +171,8 @@ class _AddExpenseScreenState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color(0xFF0014A8),
+        foregroundColor: Colors.white,
         title: Text(
           widget.docId == null
               ? "Add Expense"
@@ -183,33 +185,41 @@ class _AddExpenseScreenState
           children: [
             TextField(
               controller: titleController,
-              decoration: const InputDecoration(
-                labelText: "Title",
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: "Expense Title",
+                prefixIcon: const Icon(Icons.title),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
               ),
             ),
 
-            const SizedBox(height: 15),
+            const SizedBox(height: 20),
 
             TextField(
               controller: amountController,
-              keyboardType:
-              TextInputType.number,
-              decoration: const InputDecoration(
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
                 labelText: "Amount",
-                border: OutlineInputBorder(),
+                prefixIcon:
+                const Icon(Icons.currency_rupee),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
               ),
             ),
 
-            const SizedBox(height: 15),
+            const SizedBox(height: 20),
 
             DropdownButtonFormField<String>(
               value: selectedCategory,
-              decoration:
-              const InputDecoration(
+              decoration: InputDecoration(
                 labelText: "Category",
-                border:
-                OutlineInputBorder(),
+                prefixIcon:
+                const Icon(Icons.category),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
               ),
               items: categories.map((category) {
                 return DropdownMenuItem(
@@ -224,39 +234,63 @@ class _AddExpenseScreenState
               },
             ),
 
-            const SizedBox(height: 15),
+            const SizedBox(height: 20),
 
-            ListTile(
-              title: Text(
-                "Date: ${selectedDate.day}/${selectedDate.month}/${selectedDate.year}",
+            Card(
+              elevation: 3,
+              shape: RoundedRectangleBorder(
+                borderRadius:
+                BorderRadius.circular(15),
               ),
-              trailing: const Icon(
-                Icons.calendar_month,
+              child: ListTile(
+                leading: const Icon(
+                  Icons.calendar_month,
+                  color: Color(0xFF0014A8),
+                ),
+                title: Text(
+                  "${selectedDate.day}/${selectedDate.month}/${selectedDate.year}",
+                ),
+                trailing: const Text(
+                  "Select Date",
+                  style: TextStyle(
+                    color: Color(0xFF0014A8),
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                onTap: pickDate,
               ),
-              onTap: pickDate,
             ),
 
-            const SizedBox(height: 25),
+            const SizedBox(height: 30),
 
             SizedBox(
               width: double.infinity,
+              height: 55,
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:
+                  const Color(0xFF0014A8),
+                  shape: RoundedRectangleBorder(
+                    borderRadius:
+                    BorderRadius.circular(15),
+                  ),
+                ),
                 onPressed:
                 isLoading ? null : saveExpense,
                 child: isLoading
-                    ? const SizedBox(
-                  height: 20,
-                  width: 20,
-                  child:
-                  CircularProgressIndicator(
-                    strokeWidth: 2,
-                    color: Colors.white,
-                  ),
+                    ? const CircularProgressIndicator(
+                  color: Colors.white,
                 )
                     : Text(
                   widget.docId == null
                       ? "Save Expense"
                       : "Update Expense",
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight:
+                    FontWeight.bold,
+                  ),
                 ),
               ),
             ),

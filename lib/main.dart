@@ -2,7 +2,7 @@ import 'package:expanse_tracker_app/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
-
+import 'screens/splash/splash_screen.dart';
 import 'firebase_options.dart';
 
 import 'providers/theme_provider.dart';
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
           ? ThemeMode.dark
           : ThemeMode.light,
 
-      home: const LoginScreen(),
+      home: const SplashScreen(),
     );
   }
 }

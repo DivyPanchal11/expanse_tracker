@@ -104,10 +104,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
 
 
-                        CircleAvatar(radius: 40,backgroundColor: Color(0xFF0014A8),
-                          child: Icon(Icons.account_balance_wallet,
-                            size: 50,color: Color(0xFFF8FAFC)),
-                        ),
+                    Container(
+                      width: 80,
+                      height:80,
+
+                      child: Image.asset(
+                        'assets/images/logo2.png',
+                      ),
+                    ),
                     SizedBox(height: 10,),
                     const Text(
                       "Expense Tracker",
