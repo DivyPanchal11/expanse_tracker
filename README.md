@@ -10,6 +10,7 @@ A modern Flutter + Firebase application that helps users manage their daily expe
 * User Login
 * Secure Firebase Authentication
 * Logout Functionality
+* Auto Login with Splash Screen
 
 ### Expense Management
 
@@ -30,16 +31,19 @@ A modern Flutter + Firebase application that helps users manage their daily expe
 * Monthly Expenses
 * Today's Expenses
 * Category-wise Expense Distribution
-* Pie Chart Analytics
+* Dynamic Pie Chart Analytics
 * Monthly Spending Bar Chart
+* Real-time Analytics Updates
 
 ### User Experience
 
 * Dark Mode Support
+* Splash Screen
 * Loading Indicators
 * Error Handling with SnackBars
 * Responsive UI
 * Real-time Data Synchronization
+* Bottom Navigation Bar
 
 ## Tech Stack
 
@@ -71,15 +75,17 @@ lib/
 │   ├── auth/
 │   │   ├── login_screen.dart
 │   │   └── register_screen.dart
-│   ├── expense/
+│   ├── splash/
+│   │   └── splash_screen.dart
+│   ├── home/
+│   │   ├── home_screen.dart
+│   │   ├── expense_list_screen.dart
 │   │   ├── add_expense_screen.dart
-│   │   └── expense_list_screen.dart
-│   ├── analytics/
 │   │   ├── analytics_screen.dart
+│   │   └── profile_screen.dart
+│   ├── widgets/
 │   │   ├── expense_pie_chart.dart
 │   │   └── monthly_bar_chart.dart
-│   └── profile/
-│       └── profile_screen.dart
 ├── services/
 │   ├── auth_service.dart
 │   └── firestore_service.dart
@@ -90,17 +96,14 @@ lib/
 └── main.dart
 ```
 
-
-
 ## Installation
 
 ### Clone Repository
 
 ```bash
 git clone https://github.com/DivyPanchal11/expanse_tracker.git
-cd expense_tracker
+cd expanse_tracker
 ```
-
 
 ### Install Dependencies
 
@@ -119,8 +122,8 @@ flutter run
 ### Step 1: Create Firebase Project
 
 * Open Firebase Console
-* Create a new project
-* Enable Authentication
+* Create a New Project
+* Enable Authentication (Email/Password)
 * Enable Cloud Firestore
 
 ### Step 2: Configure FlutterFire
@@ -148,29 +151,42 @@ Ensure Firebase is initialized in `main.dart`.
 * cloud_firestore
 * provider
 * fl_chart
+* flutter_launcher_icons
 
 ## Current Features Completed
 
 * Firebase Authentication
+* User Registration & Login
+* Splash Screen
 * Expense CRUD Operations
 * Firestore Integration
 * Search Functionality
 * Analytics Dashboard
 * Pie Chart Visualization
 * Monthly Bar Chart
+* Dynamic Expense Tracking
 * Dark Mode Toggle
 * Profile Screen
 * Loading States
 * Error Handling
 * Responsive UI
+* Custom App Icon
+
+## Future Enhancements
+
+* Expense Budget Planning
+* Income Tracking
+* PDF Report Export
+* Expense Categories Management
+* Notifications & Reminders
+* Cloud Backup
+* Monthly Financial Reports
 
 ## Author
 
 ### Divy Panchal
 
-Flutter Developer
-
-Built with Flutter, Firebase, and Dart.
+Built with Flutter, Firebase, Firestore, Provider, and Dart.
 
 ## License
 
